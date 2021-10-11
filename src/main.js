@@ -6,12 +6,13 @@ import axios from "axios";
 import * as echarts from 'echarts'
 import '@/assets/js/flow/china.js'
 
-document.onselectstart = function () {
-  return false;
-};
-document.oncontextmenu = function () {
-  return false;
-};
+//vue中使用网页防复制
+// document.onselectstart = function () {
+//   return false;
+// };
+// document.oncontextmenu = function () {
+//   return false;
+// };
 
 Vue.config.productionTip = false
 //挂载eharts
