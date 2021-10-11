@@ -7,27 +7,81 @@ export default {
   name: "FlowTimeTrend",
   data() {
     return {
-
+      equipmentFlowRankChart:null,
+      equipmentFlowRankOption:{
+        xAxis: {
+          type: 'category',
+          axisLabel:{
+            color: 'white'
+          },
+          boundaryGap: false
+        },
+        yAxis: {
+          type: 'value',
+          splitLine: {
+            show: false
+          },
+          axisLabel:{
+            color: 'white'
+          },
+          boundaryGap: [0, '30%']
+        },
+        visualMap: {
+          type: 'piecewise',
+          show: false,
+          dimension: 0,
+          seriesIndex: 0,
+          pieces: [{
+            gt: 1,
+            lt: 3,
+            color: 'rgba(0, 0, 180, 0.4)'
+          }, {
+            gt: 5,
+            lt: 7,
+            color: 'rgba(0, 0, 180, 0.4)'
+          }]
+        },
+        series: [
+          {
+            type: 'line',
+            smooth: 0.6,
+            symbol: 'none',
+            lineStyle: {
+              color: '#5470C6',
+              width: 1.5
+            },
+            markLine: {
+              symbol: ['none', 'none'],
+              label: {show: false},
+              data: [
+                {xAxis: 1},
+                {xAxis: 3},
+                {xAxis: 5},
+                {xAxis: 7}
+              ]
+            },
+            areaStyle: {},
+            data: []
+          }
+        ]
+      }
     };
   },
   mounted() {
+    this.equipmentFlowRankChart = this.$echarts.init(document.getElementById('flowTimeTrend'));
     this.drawFlowTimeTrendRank();
   },
   methods:{
     drawFlowTimeTrendRank() {
-      var equipmentFlowRankChart = this.$echarts.init(document.getElementById('flowTimeTrend'));
-      equipmentFlowRankChart.setOption({
-        tooltip: {},
-        xAxis: {
-          data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
-      });
+      // this.$http.get("/flowTimeRank").then(resp=>{
+      //   if (resp.status != 200) {
+      //     this.$message.error("数据获取失败");
+      //   } else {
+      //     this.equipmentFlowRankOption.series[0].data = resp.data.data;
+      //     console.log(this.equipmentFlowRankOption.series[0])
+      //     this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
+      //   }
+      // })
     }
   }
 }
