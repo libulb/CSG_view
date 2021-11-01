@@ -16,7 +16,7 @@
           <div class="right nav">
             <ul style="margin-left: 2%;">
               <li><a href='/terminalStatus'><i class="nav_4"></i>终端状态</a> </li>
-<!--              <li><a href="/monitor"><i class="nav_5"></i>监控系统</a> </li>-->
+              <li><a href="/offlineTerminal"><i class="nav_5"></i>离线状态</a> </li>
             </ul>
           </div>
         </div>
@@ -32,6 +32,16 @@
 <script>
 export default {
   name: "Home",
+  data(){
+    return{
+
+    }
+  },
+  mounted() {
+    // this.getRequest("/flow/flowTimeTrend").then(resp=>{
+    //   console.log(resp.data.data);
+    // })
+  }
 
 }
 </script>

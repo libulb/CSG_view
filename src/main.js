@@ -2,28 +2,28 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
-import axios from "axios";
 import * as echarts from 'echarts'
 import '@/assets/js/flow/china.js'
+import {getRequest,postRequest,putRequest,deleteRequest} from "@/utils/api";
 
 //vue中使用网页防复制
-// document.onselectstart = function () {
-//   return false;
-// };
-// document.oncontextmenu = function () {
-//   return false;
-// };
+document.onselectstart = function () {
+  return false;
+};
+document.oncontextmenu = function () {
+  return false;
+};
 
 Vue.config.productionTip = false
 //挂载eharts
 Vue.prototype.$echarts = echarts
 
-//挂载axios
-Vue.prototype.$http = axios
+//挂载请求
 
-//设置访问根路径
-axios.defaults.baseURL = "http://10.23.119.133:9000"
-
+Vue.prototype.getRequest = getRequest;
+Vue.prototype.postRequest = postRequest;
+Vue.prototype.putRequest = putRequest;
+Vue.prototype.deleteRequest = deleteRequest;
 
 new Vue({
   router,

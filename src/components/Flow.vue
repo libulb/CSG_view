@@ -113,15 +113,15 @@ export default {
       this.drawFlowHotpoint(this.flowHotpointData.data.data[this.selectNum-1]);
     },
     getFlowHotpointData() {
-      // this.$http.get("/flowHotpoint").then(resp=>{
-      //   if (resp.status != 200) {
-      //     this.$message.error("数据获取失败")
-      //   } else {
-      //     this.$message.success("数据获取成功");
-      //     this.drawFlowHotpoint(resp.data.data[0]);
-      //     this.flowHotpointData = resp;
-      //   }
-      // })
+      this.getRequest("/flow/flowHotpoint").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败")
+        } else {
+          this.$message.success("数据获取成功");
+          this.drawFlowHotpoint(resp.data.data);
+          this.flowHotpointData = resp;
+        }
+      })
     },
     drawFlowHotpoint(data) {
       var colorList = [[
@@ -160,8 +160,8 @@ export default {
             color: '#fff'
           },
           data: [{
-            "name": data[0][0],
-            "value": data[0][1],
+            "name": data[0].city,
+            "value": data[0].d1,
             "symbolSize": 148,
             "draggable": true,
             "itemStyle": {
@@ -169,8 +169,8 @@ export default {
               "color": colorList[0]
             }
           }, {
-            "name": data[1][0],
-            "value": data[1][1],
+            "name": data[1].city,
+            "value": data[1].d1,
             "symbolSize": 137,
             "draggable": true,
             "itemStyle": {
@@ -178,8 +178,8 @@ export default {
               "color": colorList[2]
             }
           }, {
-            "name": data[2][0],
-            "value": data[2][1],
+            "name": data[2].city,
+            "value": data[2].d1,
             "symbolSize": 121,
             "draggable": true,
             "itemStyle": {
@@ -187,8 +187,8 @@ export default {
               "color": colorList[4]
             }
           }, {
-            "name": data[3][0],
-            "value": data[3][1],
+            "name": data[3].city,
+            "value": data[3].d1,
             "symbolSize": 109,
             "draggable": true,
             "itemStyle": {
@@ -196,8 +196,8 @@ export default {
               "color": colorList[5]
             }
           }, {
-            "name": data[4][0],
-            "value": data[4][1],
+            "name": data[4].city,
+            "value": data[4].d1,
             "symbolSize": 88,
             "draggable": true,
             "itemStyle": {
@@ -205,8 +205,8 @@ export default {
               "color": colorList[8]
             }
           }, {
-            "name": data[5][0],
-            "value": data[5][1],
+            "name": data[5].city,
+            "value": data[5].d1,
             "symbolSize": 77,
             "draggable": true,
             "itemStyle": {
@@ -214,8 +214,8 @@ export default {
               "color": colorList[11]
             }
           }, {
-            "name": data[6][0],
-            "value": data[6][1],
+            "name": data[6].city,
+            "value": data[6].d1,
             "symbolSize": 64,
             "draggable": true,
             "itemStyle": {
@@ -223,8 +223,8 @@ export default {
               "color": colorList[12]
             }
           }, {
-            "name": data[7][0],
-            "value": data[7][1],
+            "name": data[7].city,
+            "value": data[7].d1,
             "symbolSize": 55,
             "draggable": true,
             "itemStyle": {
@@ -232,8 +232,8 @@ export default {
               "color": colorList[15]
             }
           }, {
-            "name": data[8][0],
-            "value": data[8][1],
+            "name": data[8].city,
+            "value": data[8].d1,
             "symbolSize": 48,
             "draggable": true,
             "itemStyle": {
@@ -241,8 +241,8 @@ export default {
               "color": colorList[17]
             }
           }, {
-            "name": data[9][0],
-            "value": data[9][1],
+            "name": data[9].city,
+            "value": data[9].d1,
             "symbolSize": 40,
             "draggable": true,
             "itemStyle": {

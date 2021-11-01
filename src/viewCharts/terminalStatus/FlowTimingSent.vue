@@ -1,5 +1,5 @@
 <template>
-  <div id="center-flowTiming-sent" style="width:100%;height:50%;"></div>
+  <div id="center-flowTiming-sent" style="width:100%;height:48%;"></div>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default {
         color: ['#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
           text: '上行速率',
-          subtext: '(kbit/s)',
+          subtext: '(kbps)',
           textStyle: {
             fontSize: 15,
             fontWeight: 'bolder',

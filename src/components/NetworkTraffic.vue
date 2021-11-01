@@ -36,28 +36,30 @@
             </div>
             <div class="left-num">
               <div class="Num">
-                <h1>5.70kbit/s</h1>
+                <h1>{{ upload }}</h1>
+                <h1>kbps</h1>
               </div>
               <div class="Num">
-                <h1>4.81kbit/s</h1>
+                <h1>{{ download }}</h1>
+                <h1>kbps</h1>
               </div>
               <div class="Num">
-                <h1>2</h1>
+                <h1>{{ warnFlow }}</h1>
               </div>
               <div class="Num">
-                <h1>41</h1>
+                <h1>{{ localHost }}</h1>
               </div>
               <div class="Num">
-                <h1>572</h1>
+                <h1>{{ remoteHost }}</h1>
               </div>
               <div class="Num">
-                <h1>72</h1>
+                <h1>{{ onlineNum }}</h1>
               </div>
               <div class="Num">
-                <h1>10</h1>
+                <h1>{{ offlineNum }}</h1>
               </div>
               <div class="Num">
-                <h1>5449</h1>
+                <h1>{{ activeFlow }}</h1>
               </div>
             </div>
 
@@ -194,30 +196,44 @@
 
 import NetworkSegmentTerminal from "@/viewCharts/networkTraffic/NetworkSegmentTerminal";
 import SegmentTraffic from "@/viewCharts/networkTraffic/SegmentTraffic";
-import laydate from "@/assets/js/layDate-v5.3.1/layDate-v5.3.1/laydate/laydate.js";
 
 export default {
   name: "NetworkTraffic",
   components: {NetworkSegmentTerminal,SegmentTraffic},
   mounted() {
-      this.timeStartEnd();
+    this.getRandomNum();
+    this.timer = setInterval(() =>{
+      setTimeout(this.getRandomNum,0)
+    },1000*1)
   },
   data() {
     return{
-
+      upload:'',
+      download:'',
+      warnFlow:'',
+      localHost:'',
+      remoteHost:'',
+      onlineNum:'',
+      offlineNum:'',
+      activeFlow:'',
+      timer: null
     }
   },
   methods:{
-      timeStartEnd() {
-        this.laydate.render({
-          elem: '#startTime'
-          ,type: 'datetime'
-        });
-        this.laydate.render({
-          elem: '#endTime'
-          ,type: 'datetime'
-        });
-      }
+    getRandomNum(){
+      this.upload = (Math.random() * 50 + 20).toFixed(2);
+      this.download = (Math.random() * 100 + 20).toFixed(2);
+      this.warnFlow = Math.floor(Math.random() * 50 + 20);
+      this.localHost = Math.floor(Math.random() * 50 + 10);
+      this.remoteHost = Math.floor(Math.random() * 20 + 20);
+      this.onlineNum = Math.floor(Math.random() * 10 + 20);
+      this.offlineNum = Math.floor(Math.random() * 10 + 10);
+      this.activeFlow = Math.floor(Math.random() * 10 + 100);
+    }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
+    this.timer = null;
   }
 
 }

@@ -7,16 +7,8 @@ export default {
   name: "EquipmentFlowRank",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawEquipmentFlowRank();
-  },
-  methods:{
-    drawEquipmentFlowRank() {
-      var equipmentFlowRankChart = this.$echarts.init(document.getElementById('equipmentFlowRank'));
-      equipmentFlowRankChart.setOption({
+      equipmentFlowRankChart: null,
+      equipmentFlowRankOption: {
         tooltip: {},
         xAxis: {
           data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
@@ -27,7 +19,17 @@ export default {
           type: 'bar',
           data: [5, 20, 36, 10, 10, 20]
         }]
-      });
+      },
+
+    };
+  },
+  mounted() {
+    this.equipmentFlowRankChart = this.$echarts.init(document.getElementById('equipmentFlowRank'));
+    this.drawEquipmentFlowRank();
+  },
+  methods:{
+    drawEquipmentFlowRank() {
+      this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
     }
   }
 }

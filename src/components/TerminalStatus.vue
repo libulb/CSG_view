@@ -37,10 +37,12 @@
             </div>
             <div class="left-num">
               <div class="Num">
-                <h1>5.70kbit/s</h1>
+                <h1>5.70</h1>
+                <h1>kbps</h1>
               </div>
               <div class="Num">
-                <h1>4.81kbit/s</h1>
+                <h1>4.81</h1>
+                <h1>kbps</h1>
               </div>
               <div class="Num">
                 <h1>2</h1>
