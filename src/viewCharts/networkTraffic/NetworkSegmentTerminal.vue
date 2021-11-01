@@ -7,16 +7,8 @@ export default {
   name: "NetworkSegmentTerminal",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawNetworkSegmentTerminal();
-  },
-  methods:{
-    drawNetworkSegmentTerminal() {
-      var networkSegmentTerminalChart = this.$echarts.init(document.getElementById('center-terminal-detail'));
-      networkSegmentTerminalChart.setOption({
+      networkSegmentTerminalChart: null,
+      networkSegmentTerminalOption:{
         tooltip: {
           trigger: 'item',
           triggerOn: 'mousemove'
@@ -36,7 +28,6 @@ export default {
           emphasis: {
             focus: 'adjacency'
           },
-
           data: [{
             name: '192.168.128.1',
             label:{
@@ -118,47 +109,25 @@ export default {
               color: '#CAFF70'
             }
           }],
-
-
-          links: [{
-            source: '192.168.128.1',
-            target: 'Localhost',
-            value: 110
-          },{
-            source: 'Localhost',
-            target: '173.24.56.72',
-            value: 110
-          }, {
-            source: '192.168.1.2',
-            target: '178.62.3.29',
-            value: 3
-          }, {
-            source: '192.168.1.2',
-            target: '175.24.84.198',
-            value: 3
-          }, {
-            source: '192.168.1.4',
-            target: '178.35.84.125',
-            value: 3
-          },{
-            source: '192.168.1.4',
-            target: '178.62.5.84',
-            value: 3
-          },{
-            source: '178.62.3.29',
-            target: '175.24.9.126',
-            value: 3
-          }, {
-            source: '178.35.84.125',
-            target: '175.24.84.198',
-            value: 3
-          }, {
-            source: '178.62.5.84',
-            target: '175.24.9.126',
-            value: 3
-          }]
+          links: []
         }
-      });
+      }
+    };
+  },
+  mounted() {
+    this.networkSegmentTerminalChart = this.$echarts.init(document.getElementById('center-terminal-detail'));
+    this.drawNetworkSegmentTerminal();
+  },
+  methods:{
+    drawNetworkSegmentTerminal() {
+      this.getRequest("/networkTraffic/networkSegmentTerminal").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.networkSegmentTerminalOption.series.links = resp.data.data;
+          this.networkSegmentTerminalChart.setOption(this.networkSegmentTerminalOption);
+        }
+      })
     }
   }
 }

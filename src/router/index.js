@@ -5,6 +5,7 @@ import Flow from "@/components/Flow";
 import Suricata from "@/components/Suricata";
 import NetworkTraffic from "@/components/NetworkTraffic";
 import TerminalStatus from "@/components/TerminalStatus";
+import OfflineTerminal from "@/components/OfflineTerminal";
 
 
 Vue.use(VueRouter)
@@ -12,10 +13,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/",
-    redirect:"/home"
+    redirect:"/flow"
   },
   {
-    path: "/home",
+    path: "/flow",
     name: "Home",
     component: Home,
     // redirect: "/flow",
@@ -39,6 +40,11 @@ const routes = [
         path: "/terminalStatus",
         name: "TerminalStatus",
         component: TerminalStatus
+      },
+      {
+        path: "/offlineTerminal",
+        name: "OfflineTerminal",
+        component: OfflineTerminal
       }
     ]
   },

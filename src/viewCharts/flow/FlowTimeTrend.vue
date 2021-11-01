@@ -73,15 +73,16 @@ export default {
   },
   methods:{
     drawFlowTimeTrendRank() {
-      // this.$http.get("/flowTimeRank").then(resp=>{
-      //   if (resp.status != 200) {
-      //     this.$message.error("数据获取失败");
-      //   } else {
-      //     this.equipmentFlowRankOption.series[0].data = resp.data.data;
-      //     console.log(this.equipmentFlowRankOption.series[0])
-      //     this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
-      //   }
-      // })
+      // this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
+
+      this.getRequest("/flow/flowTimeTrend").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.equipmentFlowRankOption.series[0].data = resp.data.data;
+          this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
+        }
+      })
     }
   }
 }
