@@ -7,16 +7,8 @@ export default {
   name: "TopHosts",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawTopHosts();
-  },
-  methods:{
-    drawTopHosts() {
-      var topHostsChart = this.$echarts.init(document.getElementById('topHosts'));
-      topHostsChart.setOption({
+      topHostsChart:null,
+      topHostsChartOption:{
         title: {
           text: '流数排名前10主机',
           textStyle: {
@@ -64,30 +56,35 @@ export default {
           splitLine:{
             show:false
           },
-          data: [
-            '192.168.1.2',
-            '178.62.3.29',
-            '175.24.84.198',
-            '172.17.0.16',
-            '173.24.56.72',
-            '178.35.84.125',
-            '192.168.2.1',
-            '192.21.3.21',
-            '172.21.82.196',
-            '174.18.1.12'
-          ]
+          data: []
         },
         series: [
           {
             name: '',
             type: 'bar',
             color: 'white',
-            data: [
-              18203, 23489, 29034, 104970, 131744, 630230, 648203, 653489, 669034,
-              724970
-            ]
+            data: []
           }
         ]
+      }
+
+    };
+  },
+  mounted() {
+    this.topHostsChart= this.$echarts.init(document.getElementById('topHosts'));
+    this.drawTopHosts();
+  },
+  methods:{
+    drawTopHosts() {
+
+      this.getRequest("terminalStatus/topHosts").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.topHostsChartOption.yAxis.data=resp.data.data[0];
+          this.topHostsChartOption.series[0].data=resp.data.data[1];
+          this.topHostsChart.setOption(this.topHostsChartOption);
+        }
       })
     }
   }

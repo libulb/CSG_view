@@ -8,63 +8,8 @@
           <h6>网段终端总体统计</h6>
         </div>
         <div class="left-top">
-          <div class="chart-box" >
-            <div class="left-name">
-              <div class="txt">
-                <h2>上传速率</h2>
-              </div>
-              <div class="txt">
-                <h2>下载速率</h2>
-              </div>
-              <div class="txt">
-                <h2>告警流数</h2>
-              </div>
-              <div class="txt">
-                <h2>本地主机数</h2>
-              </div>
-              <div class="txt">
-                <h2>远程主机数</h2>
-              </div>
-              <div class="txt">
-                <h2>在线设备数</h2>
-              </div>
-              <div class="txt">
-                <h2>离线设备数</h2>
-              </div>
-              <div class="txt">
-                <h2>活跃流数</h2>
-              </div>
-            </div>
-            <div class="left-num">
-              <div class="Num">
-                <h1>5.70</h1>
-                <h1>kbps</h1>
-              </div>
-              <div class="Num">
-                <h1>4.81</h1>
-                <h1>kbps</h1>
-              </div>
-              <div class="Num">
-                <h1>2</h1>
-              </div>
-              <div class="Num">
-                <h1>41</h1>
-              </div>
-              <div class="Num">
-                <h1>572</h1>
-              </div>
-              <div class="Num">
-                <h1>72</h1>
-              </div>
-              <div class="Num">
-                <h1>10</h1>
-              </div>
-              <div class="Num">
-                <h1>5449</h1>
-              </div>
-            </div>
+          <NetworkSegmentTerminalTotal/>
 
-          </div>
         </div>
 <!--        <div class="title-box">-->
 <!--          <h6>终端类型统计</h6>-->
@@ -103,80 +48,7 @@
             <h6>终端通信情况表</h6>
           </div>
           <div class="center-active">
-            <table>
-              <thead>
-              <tr>
-                <th>IP</th>
-                <th>位置</th>
-                <th>流数</th>
-                <th>总发送字节数</th>
-                <th>名称</th>
-                <th>上次出现时间</th>
-                <th>上下行速率</th>
-                <th>总字节数</th>
-              </tr>
-              </thead>
-              <tbody>
-              <td>192.168.1.2</td>
-              <td>Local</td>
-              <td>24</td>
-              <td>342Bytes</td>
-              <td>gateway</td>
-              <td>02:40</td>
-              <td>2.56Mbit/s</td>
-              <td>4.61KB</td>
-              </tbody>
-              <tbody>
-              <td>175.24.84.198</td>
-              <td>Local</td>
-              <td>40</td>
-              <td>312Bytes</td>
-              <td>gateway</td>
-              <td>03:22</td>
-              <td>3.24Mbit/s</td>
-              <td>5.21KB</td>
-              </tbody>
-              <tbody>
-              <td>173.24.56.72</td>
-              <td>Local</td>
-              <td>12</td>
-              <td>420Bytes</td>
-              <td>gateway</td>
-              <td>02:24</td>
-              <td>1.12Mbit/s</td>
-              <td>3.32KB</td>
-              </tbody>
-              <tbody>
-              <td>178.62.3.29</td>
-              <td>Local</td>
-              <td>16</td>
-              <td>256Bytes</td>
-              <td>gateway</td>
-              <td>01:36</td>
-              <td>2.42Mbit/s</td>
-              <td>2.24KB</td>
-              </tbody>
-              <tbody>
-              <td>176.56.32.164</td>
-              <td>Local</td>
-              <td>25</td>
-              <td>326Bytes</td>
-              <td>gateway</td>
-              <td>02:35</td>
-              <td>3.35Mbit/s</td>
-              <td>5.27KB</td>
-              </tbody>
-              <!--                        <tbody>-->
-              <!--                            <td>176.64.68.142</td>-->
-              <!--                            <td>Local</td>-->
-              <!--                            <td>35</td>-->
-              <!--                            <td>252Bytes</td>-->
-              <!--                            <td>gateway</td>-->
-              <!--                            <td>03:28</td>-->
-              <!--                            <td>1.27Mbit/s</td>-->
-              <!--                            <td>3.45KB</td>-->
-              <!--                        </tbody>-->
-            </table>
+            <terminalCommunication/>
           </div>
         </div>
         <div class="center-bottom">
@@ -217,15 +89,17 @@
 </template>
 
 <script>
+import NetworkSegmentTerminalTotal from "../viewCharts/networkTraffic/NetworkSegmentTerminalTotal";
 import ActiveTerminal from "@/viewCharts/terminalStatus/ActiveTerminal";
 import UnActiveTerminal from "@/viewCharts/terminalStatus/UnActiveTerminal";
 import TerminalLocationMap from "@/viewCharts/terminalStatus/TerminalLocationMap";
 import TopHosts from "@/viewCharts/networkTraffic/TopHosts";
+import terminalCommunication from "@/viewCharts/terminalStatus/terminalCommunication";
 import FlowTimingRecived from "@/viewCharts/terminalStatus/FlowTimingRecived";
 import FlowTimingSent from "@/viewCharts/terminalStatus/FlowTimingSent";
 export default {
   name: "TerminalStatus",
-  components: {FlowTimingSent, FlowTimingRecived, TopHosts, TerminalLocationMap, UnActiveTerminal, ActiveTerminal},
+  components: {NetworkSegmentTerminalTotal,FlowTimingSent, FlowTimingRecived, TopHosts, TerminalLocationMap, UnActiveTerminal, ActiveTerminal,terminalCommunication},
   data() {
     return {
       value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],

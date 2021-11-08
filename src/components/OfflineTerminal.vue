@@ -33,6 +33,9 @@
           <div class="title-box">
             <h6>离线终端地区分布</h6>
           </div>
+          <div class="center-top-Map">
+            <OfflineMap/>
+          </div>
         </div>
         <div class="center-bottom">
           <div class="title-box">
@@ -51,14 +54,14 @@
 
 <script>
 
-
 import CountChange from "@/viewCharts/offlineTerminal/CountChange";
 import CompanyCondition from "@/viewCharts/offlineTerminal/CompanyCondition";
 import NetworkSegmentDistribution from "@/viewCharts/offlineTerminal/NetworkSegmentDistribution";
 import LineChart from "@/viewCharts/offlineTerminal/LineChart";
+import OfflineMap from "../viewCharts/offlineTerminal/OfflineMap";
 export default {
   name: "OfflineTerminal",
-  components: {LineChart, NetworkSegmentDistribution, CompanyCondition, CountChange},
+  components: {LineChart, NetworkSegmentDistribution, CompanyCondition, CountChange,OfflineMap},
   mounted() {
 
   },

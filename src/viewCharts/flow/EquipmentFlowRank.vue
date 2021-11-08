@@ -11,13 +11,13 @@ export default {
       equipmentFlowRankOption: {
         tooltip: {},
         xAxis: {
-          data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+          data: []
         },
         yAxis: {},
         series: [{
           name: '销量',
           type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
+          data: []
         }]
       },
 
@@ -29,7 +29,16 @@ export default {
   },
   methods:{
     drawEquipmentFlowRank() {
-      this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
+      this.getRequest("/flow/equipmentFlowRank").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.equipmentFlowRankOption.xAxis.data = resp.data.data[0];
+          this.equipmentFlowRankOption.series[0].data = resp.data.data[1];
+
+          this.equipmentFlowRankChart.setOption(this.equipmentFlowRankOption);
+        }
+      })
     }
   }
 }

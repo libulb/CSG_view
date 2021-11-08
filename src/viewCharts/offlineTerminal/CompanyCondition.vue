@@ -7,16 +7,8 @@ export default {
   name: "CompanyCondition",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawCountChange();
-  },
-  methods:{
-    drawCountChange() {
-      var CountChangeChart = this.$echarts.init(document.getElementById('left-mid-CompanyCondition'));
-      CountChangeChart.setOption({
+      CompanyConditionChart:null,
+      CompanyConditionChartOption:{
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -32,7 +24,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['百度', '阿里巴巴', '腾讯', '京东', '美团', '字节跳动', '华为'],
+            data: [],
             axisTick: {
               alignWithLabel: true
             },
@@ -64,9 +56,27 @@ export default {
             name: '离线终端',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 52, 200, 334, 390, 330, 220]
+            data: []
           }
         ]
+      }
+
+    };
+  },
+  mounted() {
+    this.drawCompanyConditionChart();
+    this.CompanyConditionChart = this.$echarts.init(document.getElementById('left-mid-CompanyCondition'));
+  },
+  methods:{
+    drawCompanyConditionChart() {
+      this.getRequest("offlineTerminal/companyCondition").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.CompanyConditionChartOption.xAxis.data=resp.data.data[0];
+          this.CompanyConditionChartOption.series[0].data=resp.data.data[1];
+          this.CompanyConditionChart.setOption(this.CompanyConditionChartOption);
+        }
       })
     }
   }

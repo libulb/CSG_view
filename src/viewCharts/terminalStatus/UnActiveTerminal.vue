@@ -7,16 +7,8 @@ export default {
   name: "UnActiveTerminal",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawUnActiveTerminal();
-  },
-  methods:{
-    drawUnActiveTerminal() {
-      var unActiveTerminalChart = this.$echarts.init(document.getElementById('left-unactive'));
-      unActiveTerminalChart.setOption({
+      unActiveTerminalChart:null,
+      unActiveTerminalOption:{
         color: ['#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
           text: '在\n线\n终\n端\n数\n量\n',
@@ -58,10 +50,7 @@ export default {
               color: '#F8F8FF',//左边线的颜色
             }
           },
-          data: ['8:00', '8:10', '8:20', '8:30', '8:40', '8:50', '9:00',
-            '9:10', '9:20', '9:30', '9:40', '9:50', '10:00', '10:10',
-            '10:20', '10:30', '10:40', '10:50', '11:00', '11:10', '11:20',
-            '11:30', '11:40', '11:50', '12:00', '12:10', '12:20', '12:30']
+          data: []
         },
         yAxis: {
           type: 'value',
@@ -81,14 +70,31 @@ export default {
             name: '邮件营销',
             type: 'line',
             stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210]
+            data: []
           },
 
         ]
+      }
+
+    };
+  },
+  mounted() {
+    this.unActiveTerminalChart = this.$echarts.init(document.getElementById('left-unactive'));
+    this.drawUnActiveTerminal();
+  },
+  methods:{
+    drawUnActiveTerminal() {
+      this.unActiveTerminalChart.setOption(this.unActiveTerminalOption);
+      this.getRequest("terminalStatus/unActiveTerminal").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.unActiveTerminalOption.xAxis.data=resp.data.data[0];
+          this.unActiveTerminalOption.series[0].data=resp.data.data[1];
+          this.unActiveTerminalChart.setOption(this.unActiveTerminalOption);
+        }
       })
+
     }
   }
 }

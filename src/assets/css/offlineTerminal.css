@@ -126,6 +126,13 @@
     float: left;
 }
 
+.box-center>.center-top>.center-top-Map{
+    width: 95%;
+    height: 75%;
+    background-color: #10121A;
+    position: relative;
+}
+
 .box-center>.center-bottom{
     width: 95%;
     height: 40%;

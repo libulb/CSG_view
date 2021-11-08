@@ -7,6 +7,7 @@ export default {
   name: "NetworkSegmentTerminal",
   data() {
     return {
+      colorALL:["hsl(160,50%,50%)","hsl(180,50%,50%)","hsl(340,50%,50%)","hsl(200,50%,50%)","hsl(320,50%,50%)","hsl(220,50%,50%)","hsl(300,50%,50%)","hsl(240,50%,50%)","hsl(140,50%,50%)","hsl(280,50%,50%)","hsl(280,50%,50%)","hsl(150,50%,50%)","hsl(350,50%,50%)","hsl(170,50%,50%)","hsl(330,50%,50%)","hsl(190,50%,50%)","hsl(310,50%,50%)"],
       networkSegmentTerminalChart: null,
       networkSegmentTerminalOption:{
         tooltip: {
@@ -22,91 +23,64 @@ export default {
 //        color = "#fff"
 //         },
           lineStyle: {
-            color: 'source',
+            color:'gradient',
             curveness: 0.5
           },
           emphasis: {
             focus: 'adjacency'
           },
-          data: [{
-            name: '192.168.128.1',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#28cad8'
+          label:{
+            color:'#fff'
+          },
+          data:  [{
+            "name": "",
+            "itemStyle": {
+              "color":""
             }
           }, {
-            name: 'Localhost',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#fc853e'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '173.24.56.72',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#9564bf'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           },{
-            name: '192.168.1.2',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#bd407e'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '192.168.1.4',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#37A2FF'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '178.62.3.29',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#FFBF00'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '178.35.84.125',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#FFBF00'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '178.62.5.84',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#80FFA5'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '175.24.84.198',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#80FFA5'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }, {
-            name: '175.24.9.126',
-            label:{
-              color:'#fff'
-            },
-            itemStyle: {
-              color: '#CAFF70'
+            "name": "",
+            "itemStyle": {
+              "color": ""
             }
           }],
           links: []
@@ -124,7 +98,14 @@ export default {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.networkSegmentTerminalOption.series.links = resp.data.data;
+          for(var i=0;i<resp.data.data[0].length;i++)
+          {
+            console.log(Math.floor(Math.random()*36)*10);
+            this.networkSegmentTerminalOption.series.data[i].name = resp.data.data[0][i];
+            this.networkSegmentTerminalOption.series.data[i].itemStyle.color=this.colorALL[i];
+
+          }
+          this.networkSegmentTerminalOption.series.links = resp.data.data[1];
           this.networkSegmentTerminalChart.setOption(this.networkSegmentTerminalOption);
         }
       })

@@ -160,40 +160,7 @@
     height: 87%;
     background: #10121A;
 }
-.center-mid>.center-active>.center-active-detail {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    /*background: gold;*/
-}
 
-.center-mid>.center-active>.center-active-detail>.active-detail-table {
-    width: 100%;
-    height: 100%;
-    /*background: gold;*/
-    position: relative;
-}
-.center-mid>.center-active>.center-active-detail>.active-detail-table table{
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
-    position: absolute;
-    text-align: center;
-}
-.center-mid>.center-active>.center-active-detail>.active-detail-table table thead th{
-    color: #61d2f7;
-    font-size: 14px;
-    font-weight: 600;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.center-mid>.center-active>.center-active-detail>.active-detail-table table tbody tr{
-    color: #61d2f7;
-    font-size: 14px;
-    font-weight: 600;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
 #startTime {
     float: left;
     width: 32%;

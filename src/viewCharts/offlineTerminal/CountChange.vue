@@ -7,16 +7,8 @@ export default {
   name: "CountChange",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawCountChange();
-  },
-  methods:{
-    drawCountChange() {
-      var CountChangeChart = this.$echarts.init(document.getElementById('left-top-CountChange'));
-      CountChangeChart.setOption({
+      CountChangeChart:null,
+      CountChangeChartOption:{
         color: ['#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
           text: '离\n线\n终\n端\n数\n量\n',
@@ -61,10 +53,7 @@ export default {
           // axisLabel: { //坐标轴刻度标签的相关设置
           //   margin: 100, //刻度标签与轴线之间的距离
           // },
-          data: ['8:00', '8:10', '8:20', '8:30', '8:40', '8:50', '9:00',
-            '9:10', '9:20', '9:30', '9:40', '9:50', '10:00', '10:10',
-            '10:20', '10:30', '10:40', '10:50', '11:00', '11:10', '11:20',
-            '11:30', '11:40', '11:50', '12:00', '12:10', '12:20', '12:30']
+          data: []
         },
         yAxis: {
           type: 'value',
@@ -84,14 +73,30 @@ export default {
             name: '离线终端',
             type: 'line',
             stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210,
-              120, 132, 101, 134, 90, 230, 210]
+            data: []
           },
 
         ]
+      }
+
+    };
+  },
+  mounted() {
+    this.CountChangeChart = this.$echarts.init(document.getElementById('left-top-CountChange'));
+    this.drawCountChange();
+  },
+  methods:{
+    drawCountChange() {
+      this.getRequest("offlineTerminal/countChange").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.CountChangeChartOption.xAxis.data=resp.data.data[0];
+          this.CountChangeChartOption.series[0].data=resp.data.data[1];
+          this.CountChangeChart.setOption(this.CountChangeChartOption);
+        }
       })
+
     }
   }
 }

@@ -7,16 +7,8 @@ export default {
   name: "SegmentTraffic",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawSegmentTraffic();
-  },
-  methods:{
-    drawSegmentTraffic() {
-      var SegmentTrafficChart = this.$echarts.init(document.getElementById('center-flowTiming-detail'));
-      SegmentTrafficChart.setOption({
+      SegmentTrafficChart:null,
+      SegmentTrafficOption:{
         color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
           text: ''
@@ -49,7 +41,7 @@ export default {
           {
             type: 'category',
             boundaryGap: false,
-            data: ['21:00', '21:10', '21:20', '21:30', '21:40', '21:50', '22:00'],
+            data: [],
             axisLine: {
               lineStyle: {
                 type: 'solid',
@@ -95,12 +87,32 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [140, 232, 101, 264, 90, 340, 250]
+            data:[]
           },
         ]
+      }
+
+
+    };
+  },
+  mounted() {
+    this.SegmentTrafficChart=this.$echarts.init(document.getElementById('center-flowTiming-detail'));
+    this.drawSegmentTraffic();
+  },
+  methods:{
+    drawSegmentTraffic() {
+      this.getRequest("/networkTraffic/segmentTraffic").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.SegmentTrafficOption.xAxis.data=resp.data.data[0];
+          this.SegmentTrafficOption.series[0].data=resp.data.data[1];
+          this.SegmentTrafficChart.setOption(this.SegmentTrafficOption);
+        }
       })
     }
   }
+
 }
 </script>
 

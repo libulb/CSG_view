@@ -7,16 +7,8 @@ export default {
   name: "LineChart",
   data() {
     return {
-
-    };
-  },
-  mounted() {
-    this.drawCountChange();
-  },
-  methods:{
-    drawCountChange() {
-      var CountChangeChart = this.$echarts.init(document.getElementById('left-bottom-LineChart'));
-      CountChangeChart.setOption({
+      lineChartChart:null,
+      lineChartChartOption:{
         tooltip: {
           trigger: 'axis'
         },
@@ -29,7 +21,7 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00'],
+          data: [],
           axisLine: {
             lineStyle: {
               type: 'solid',
@@ -55,22 +47,44 @@ export default {
             name: 'Email',
             type: 'line',
             stack: 'Total',
-            data: [120, 132, 101, 134, 90, 230, 210]
+            data: []
           },
           {
             name: 'Union Ads',
             type: 'line',
             stack: 'Total',
-            data: [220, 182, 191, 234, 290, 330, 310]
+            data: []
           },
           {
             name: 'Video Ads',
             type: 'line',
             stack: 'Total',
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: []
           }
         ]
+      }
+
+    };
+  },
+  mounted() {
+    this.lineChartChart=this.$echarts.init(document.getElementById('left-bottom-LineChart'));
+    this.drawlineChartChart();
+  },
+  methods:{
+    drawlineChartChart() {
+      this.getRequest("offlineTerminal/lineChart").then(resp=>{
+        if (resp.status != 200) {
+          this.$message.error("数据获取失败");
+        } else {
+          this.lineChartChartOption.xAxis.data=resp.data.data[0];
+          this.lineChartChartOption.series[0].data=resp.data.data[1];
+          this.lineChartChartOption.series[1].data=resp.data.data[2];
+          this.lineChartChartOption.series[2].data=resp.data.data[3];
+          this.lineChartChart.setOption(this.lineChartChartOption);
+        }
       })
+
+
     }
   }
 }

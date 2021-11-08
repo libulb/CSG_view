@@ -32,6 +32,8 @@ module.exports = {
             && function (app){
                 app.get('/flow/*', mockServer);
                 app.get('/networkTraffic/*', mockServer);
+                app.get('/terminalStatus/*', mockServer);
+                app.get('/offlineTerminal/*', mockServer);
                 // app.get('/menu/*', mockServer);
             }
     },
