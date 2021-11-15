@@ -28,7 +28,7 @@ export default {
         } else {
           this.outname=resp.data.data[0];
           this.outvalue=resp.data.data[1];
-          console.log(resp.data.data[1]);
+
           var outdata=[];
 
 
@@ -72,6 +72,15 @@ export default {
 
           let mapChartOption = {
             backgroundColor: '#10121A',
+            title: {
+              text: '在线终端地区分布',
+              left: '15%',
+              top: '3%',
+              textStyle: {
+                color: '#fff',
+                fontSize: 20
+              }
+            },
             tooltip: {
               show: true,
               formatter: function(params) {

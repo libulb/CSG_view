@@ -25,10 +25,10 @@
 <!--              <div id="left-active"></div>-->
               <ActiveTerminal/>
             </div>
-            <div class="center-left-inactive">
-<!--              <div id="left-inactive"></div>-->
-              <UnActiveTerminal/>
-            </div>
+<!--            <div class="center-left-inactive">-->
+<!--&lt;!&ndash;              <div id="left-inactive"></div>&ndash;&gt;-->
+<!--              <UnActiveTerminal/>-->
+<!--            </div>-->
           </div>
           <div class="center-center">
 <!--            <div id="terminalLocation"></div>-->
@@ -91,15 +91,14 @@
 <script>
 import NetworkSegmentTerminalTotal from "../viewCharts/networkTraffic/NetworkSegmentTerminalTotal";
 import ActiveTerminal from "@/viewCharts/terminalStatus/ActiveTerminal";
-import UnActiveTerminal from "@/viewCharts/terminalStatus/UnActiveTerminal";
 import TerminalLocationMap from "@/viewCharts/terminalStatus/TerminalLocationMap";
-import TopHosts from "@/viewCharts/networkTraffic/TopHosts";
+import TopHosts from "@/viewCharts/terminalStatus/TopHosts";
 import terminalCommunication from "@/viewCharts/terminalStatus/terminalCommunication";
 import FlowTimingRecived from "@/viewCharts/terminalStatus/FlowTimingRecived";
 import FlowTimingSent from "@/viewCharts/terminalStatus/FlowTimingSent";
 export default {
   name: "TerminalStatus",
-  components: {NetworkSegmentTerminalTotal,FlowTimingSent, FlowTimingRecived, TopHosts, TerminalLocationMap, UnActiveTerminal, ActiveTerminal,terminalCommunication},
+  components: {NetworkSegmentTerminalTotal,FlowTimingSent, FlowTimingRecived, TopHosts, TerminalLocationMap, ActiveTerminal,terminalCommunication},
   data() {
     return {
       value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],

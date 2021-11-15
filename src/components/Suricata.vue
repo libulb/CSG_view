@@ -1,12 +1,16 @@
 <template>
   <div class="suricata_css">
     Suricata页面
+
+
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "Suricata"
+  name: "Suricata",
+
 }
 </script>
 

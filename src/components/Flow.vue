@@ -30,7 +30,11 @@
     <div class="box-center">
       <div class="center-top">
         <div class="chart-box">
-          <FlowMap/>
+<!--          <FlowMap/>-->
+
+          <DynamicChinaMap/>
+<!--          <div id="china_map" style="width:100%;height:95%;"></div>-->
+<!--          <test/>-->
         </div>
       </div>
       <div class="center-bottom">
@@ -66,14 +70,20 @@
   </div>
 </template>
 
+<script type="text/javascript" src="./china.js"></script>
+
 <script>
+
+import '@/assets/js/flow/china.js';
+import test from "../viewCharts/flow/test";
 import QueryAssets from "@/viewCharts/flow/QueryAssets";
 import EquipmentFlowRank from "@/viewCharts/flow/EquipmentFlowRank";
 import FlowTimeTrend from "@/viewCharts/flow/FlowTimeTrend";
 import FlowMap from "@/viewCharts/flow/FlowMap";
+import DynamicChinaMap from "../viewCharts/flow/DynamicChinaMap";
 export default {
   name: "Flow",
-  components: {FlowMap, FlowTimeTrend, EquipmentFlowRank, QueryAssets},
+  components: {test,DynamicChinaMap, FlowMap, FlowTimeTrend, EquipmentFlowRank, QueryAssets},
   mounted() {
     this.flowHotpointChart = this.$echarts.init(document.getElementById('flowHotpoint'));
     this.getFlowHotpointData();
@@ -109,6 +119,9 @@ export default {
     }
   },
   methods:{
+    //修改
+
+
     NumSelect() {
       this.drawFlowHotpoint(this.flowHotpointData.data.data[this.selectNum-1]);
     },
@@ -254,10 +267,13 @@ export default {
       };
       this.flowHotpointChart.setOption(this.flowHotpointOption);
     }
+
   }
 
 }
 </script>
+
+
 
 <style scoped src="../assets/css/flow.css">
 @import '../assets/css/flow.css';

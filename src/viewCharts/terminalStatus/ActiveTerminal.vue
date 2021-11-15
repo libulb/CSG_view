@@ -12,9 +12,10 @@ export default {
         color: ['#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
           text: '在\n线\n终\n端\n数\n量\n',
+          top:'25%',
           // subtext: '(kbit/s)',
           textStyle: {
-            fontSize: 12,
+            fontSize: 18,
             fontWeight: 'bolder',
             color: '#F8F8FF'                             // 主标题文字颜色
           },
@@ -29,11 +30,12 @@ export default {
           data: ['']
         },
         grid: {
-          left: '5.5%',
+          left: '8%',
           right: '4%',
-          bottom: '3%',
+          // top:'2%',
+          bottom: '6%',
           width:'92%',  // 调整折线图大小
-          height:'100%',
+          height:'80%',
           containLabel: true
         },
         // toolbox: {
