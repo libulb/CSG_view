@@ -16,6 +16,7 @@ export default {
   mounted() {
     this.terminalLocationMapChart = this.$echarts.init(document.getElementById('terminalLocation'));
     this.drawTerminalLocationMap();
+    setInterval(this.drawTerminalLocationMap,60000);
   },
   methods:{
     drawTerminalLocationMap() {

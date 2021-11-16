@@ -77,6 +77,7 @@ export default {
   },
   mounted() {
     this.drawNetworkSegmentTerminalTotal();
+    setInterval(this.drawNetworkSegmentTerminalTotal,60000);
   },
   methods:{
     drawNetworkSegmentTerminalTotal(){
@@ -84,8 +85,8 @@ export default {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
+          console.log(resp);
           this.dataList=resp.data.data[0];
-
 
         }
       })
