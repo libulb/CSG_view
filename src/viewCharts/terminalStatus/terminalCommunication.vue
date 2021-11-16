@@ -13,56 +13,17 @@
       <th>总字节数</th>
     </tr>
     </thead>
-    <tr>
-      <td>{{tableValue[0][0]}}</td>
-      <td>{{tableValue[0][1]}}</td>
-      <td>{{tableValue[0][2]}}</td>
-      <td>{{tableValue[0][3]+"Bytes"}}</td>
-      <td>{{tableValue[0][4]}}</td>
-      <td>{{tableValue[0][5]}}</td>
-      <td>{{tableValue[0][6]+"Mbit/s"}}</td>
-      <td>{{tableValue[0][7]+"KB"}}</td>
+    <tr v-for="value in tableValue">
+      <td>{{value.ip}}</td>
+      <td>{{value.location}}</td>
+      <td>{{value.flows}}</td>
+      <td>{{value.totalrecvbytes+"bytes"}}</td>
+      <td>{{value.name}}</td>
+      <td>{{value.lastseen}}</td>
+      <td>{{value.rates.toFixed(2)+"bit/s"}}</td>
+      <td>{{value.totalbytes+"bytes"}}</td>
     </tr>
-    <tr>
-      <td>{{tableValue[1][0]}}</td>
-      <td>{{tableValue[1][1]}}</td>
-      <td>{{tableValue[1][2]}}</td>
-      <td>{{tableValue[1][3]+"Bytes"}}</td>
-      <td>{{tableValue[1][4]}}</td>
-      <td>{{tableValue[1][5]}}</td>
-      <td>{{tableValue[1][6]+"Mbit/s"}}</td>
-      <td>{{tableValue[1][7]+"KB"}}</td>
-    </tr>
-    <tr>
-      <td>{{tableValue[2][0]}}</td>
-      <td>{{tableValue[2][1]}}</td>
-      <td>{{tableValue[2][2]}}</td>
-      <td>{{tableValue[2][3]+"Bytes"}}</td>
-      <td>{{tableValue[2][4]}}</td>
-      <td>{{tableValue[2][5]}}</td>
-      <td>{{tableValue[2][6]+"Mbit/s"}}</td>
-      <td>{{tableValue[2][7]+"KB"}}</td>
-    </tr>
-    <tr>
-      <td>{{tableValue[3][0]}}</td>
-      <td>{{tableValue[3][1]}}</td>
-      <td>{{tableValue[3][2]}}</td>
-      <td>{{tableValue[3][3]+"Bytes"}}</td>
-      <td>{{tableValue[3][4]}}</td>
-      <td>{{tableValue[3][5]}}</td>
-      <td>{{tableValue[3][6]+"Mbit/s"}}</td>
-      <td>{{tableValue[3][7]+"KB"}}</td>
-    </tr>
-    <tr>
-      <td>{{tableValue[4][0]}}</td>
-      <td>{{tableValue[4][1]}}</td>
-      <td>{{tableValue[4][2]}}</td>
-      <td>{{tableValue[4][3]+"Bytes"}}</td>
-      <td>{{tableValue[4][4]}}</td>
-      <td>{{tableValue[4][5]}}</td>
-      <td>{{tableValue[4][6]+"Mbit/s"}}</td>
-      <td>{{tableValue[4][7]+"KB"}}</td>
-    </tr>
+
   </table>
 </div>
 </template>
@@ -81,11 +42,12 @@ export default {
   },
   methods:{
     drawterminalCommunication() {
-      this.getRequest("/terminalStatus/terminalCommunication").then(resp=>{
+      this.getRequest("/terminalStatus/getSingelNetSeg").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
           this.tableValue=resp.data.data;
+          console.log(resp.data.data)
         }
       })
     }

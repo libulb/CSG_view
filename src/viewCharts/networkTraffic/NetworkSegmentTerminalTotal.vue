@@ -28,30 +28,30 @@
     </div>
     <div class="left-num">
       <div class="Num">
-        <h1>{{ dataList[0] }}</h1>
+        <h1>{{ (dataList.uprate / 1000).toFixed(2) }}</h1>
         <h1>kbps</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[1] }}</h1>
+        <h1>{{ (dataList.downrate / 1000).toFixed(2) }}</h1>
         <h1>kbps</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[2]  }}</h1>
+        <h1>{{ dataList.alertFlow  }}</h1>
       </div>
       <div class="Num">
-        <h1>{{dataList[3] }}</h1>
+        <h1>{{ dataList.upbytes }}</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[4]  }}</h1>
+        <h1>{{ dataList.downbytes  }}</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[5]  }}</h1>
+        <h1>{{ dataList.ondevicecount  }}</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[6]  }}</h1>
+        <h1>{{ dataList.offdevicecount  }}</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList[7]  }}</h1>
+        <h1>{{ dataList.activeFlowCount  }}</h1>
       </div>
     </div>
   </div>
@@ -80,12 +80,11 @@ export default {
   },
   methods:{
     drawNetworkSegmentTerminalTotal(){
-      this.getRequest("/networkTraffic/networkSegmentTerminalTotal").then(resp=>{
+      this.getRequest("/terminalStatus/getNetworkSegmentTerminalTotal").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-
-          this.dataList=resp.data.data;
+          this.dataList=resp.data.data[0];
 
 
         }

@@ -11,12 +11,6 @@
           <NetworkSegmentTerminalTotal/>
 
         </div>
-<!--        <div class="title-box">-->
-<!--          <h6>终端类型统计</h6>-->
-<!--        </div>-->
-        <!--            <div class="center-left-devices">-->
-        <!--                <div id="devicesTypes"></div>-->
-        <!--            </div>-->
       </div>
       <div class="box-center">
         <div class="center-top">
@@ -25,13 +19,8 @@
 <!--              <div id="left-active"></div>-->
               <ActiveTerminal/>
             </div>
-<!--            <div class="center-left-inactive">-->
-<!--&lt;!&ndash;              <div id="left-inactive"></div>&ndash;&gt;-->
-<!--              <UnActiveTerminal/>-->
-<!--            </div>-->
           </div>
           <div class="center-center">
-<!--            <div id="terminalLocation"></div>-->
             <TerminalLocationMap/>
           </div>
           <div class="center-right">
@@ -64,20 +53,6 @@
               <option value="7">终端7</option>
             </select>
           </div>
-<!--          <div class="timeInterval">-->
-<!--&lt;!&ndash;            <input placeholder="请选择起始时间" class="laydate-icon" id="startTime" value="">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input placeholder="请选择结束时间" class="laydate-icon" id="endTime" value="">&ndash;&gt;-->
-<!--            <div class="block">-->
-<!--              <el-date-picker-->
-<!--                  v-model="value1"-->
-<!--                  type="datetimerange"-->
-<!--                  start-placeholder="开始日期"-->
-<!--                  end-placeholder="结束日期">-->
-<!--              </el-date-picker>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div id="center-flowTiming-sent"></div>-->
-<!--          <div id="center-flowTiming-recived"></div>-->
           <FlowTimingRecived/>
           <FlowTimingSent/>
         </div>

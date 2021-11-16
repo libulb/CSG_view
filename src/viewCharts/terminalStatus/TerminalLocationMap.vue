@@ -19,9 +19,6 @@ export default {
   },
   methods:{
     drawTerminalLocationMap() {
-
-
-
       this.getRequest("terminalStatus/terminalLocationMap").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
