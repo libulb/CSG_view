@@ -11,10 +11,10 @@
         <h2>告警流数</h2>
       </div>
       <div class="txt">
-        <h2>本地主机数</h2>
+        <h2>上行字节数</h2>
       </div>
       <div class="txt">
-        <h2>远程主机数</h2>
+        <h2>下行字节数</h2>
       </div>
       <div class="txt">
         <h2>在线设备数</h2>
