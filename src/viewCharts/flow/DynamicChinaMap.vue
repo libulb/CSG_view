@@ -20,9 +20,7 @@ $('document').ready(function () {
 </script>
 
 <script>
-import echarts from "echarts";
 import '@/assets/js/flow/china.js';
-// import "@/viewCharts/flow/rem";
 import "@/viewCharts/flow/jquery-3.3.1.min";
 import "@/viewCharts/flow/echarts.min";
 

@@ -88,12 +88,12 @@ export default {
   methods:{
     drawActiveTerminal() {
 
-      this.getRequest("terminalStatus/activeTerminal").then(resp=>{
+      this.getRequest("terminalStatus/getOnlineTerminal").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.activeTerminalOption.xAxis.data=resp.data.data[0];
-          this.activeTerminalOption.series[0].data=resp.data.data[1];
+          this.activeTerminalOption.xAxis.data=resp.data.data.timeStamp;
+          this.activeTerminalOption.series[0].data=resp.data.data.onlineNum;
           this.activeTerminalChart.setOption(this.activeTerminalOption);
         }
       })

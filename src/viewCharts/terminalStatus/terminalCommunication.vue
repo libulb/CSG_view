@@ -47,7 +47,6 @@ export default {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          console.log(resp.data.data);
           this.tableValue=resp.data.data;
           console.log(resp.data.data)
         }

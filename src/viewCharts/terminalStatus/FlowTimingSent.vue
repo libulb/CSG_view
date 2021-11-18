@@ -67,7 +67,7 @@ export default {
         },
         series: [
           {
-            name: '邮件营销',
+            name: '上行速率',
             type: 'line',
             stack: '总量',
             data: []
@@ -85,12 +85,13 @@ export default {
   },
   methods:{
     drawFlowTimingSent() {
-      this.getRequest("terminalStatus/flowTimingSent").then(resp=>{
+      this.getRequest("terminalStatus/getOnlineTerminal").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.flowTimingSentChartOption.xAxis.data=resp.data.data[0];
-          this.flowTimingSentChartOption.series[0].data=resp.data.data[1];
+          console.log(resp.data.data)
+          this.flowTimingSentChartOption.xAxis.data=resp.data.data.timeStamp;
+          this.flowTimingSentChartOption.series[0].data=resp.data.data.uprate;
           this.flowTimingSentChart.setOption(this.flowTimingSentChartOption);
         }
       })

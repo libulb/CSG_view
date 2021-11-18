@@ -20,12 +20,12 @@ export default {
   },
   methods:{
     drawTerminalLocationMap() {
-      this.getRequest("terminalStatus/terminalLocationMap").then(resp=>{
+      this.getRequest("terminalStatus/getlocation").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.outname=resp.data.data[0];
-          this.outvalue=resp.data.data[1];
+          this.outname=resp.data.data.locations;
+          this.outvalue=resp.data.data.count;
 
           var outdata=[];
 

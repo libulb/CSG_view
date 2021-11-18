@@ -13,13 +13,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/",
-    redirect:"/flow"
+    redirect:"/home"
   },
   {
-    path: "/flow",
+    path: "/home",
     name: "Home",
     component: Home,
-    // redirect: "/flow",
+    redirect: "/terminalStatus",
     children: [
       {
         path: "/flow",
