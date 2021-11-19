@@ -37,14 +37,14 @@
 <!--          <test/>-->
         </div>
       </div>
-      <div class="center-bottom">
-        <div class="title-box">
-          <h6>流量地区分布图</h6>
-        </div>
-        <div class="chart-box">
+<!--      <div class="center-bottom">-->
+<!--        <div class="title-box">-->
+<!--          <h6>流量地区分布图</h6>-->
+<!--        </div>-->
+<!--        <div class="chart-box">-->
 
-        </div>
-      </div>
+<!--        </div>-->
+<!--      </div>-->
     </div>
 
     <div class="box-right">

@@ -27,7 +27,7 @@
 
             <div class="center-right-hosts">
 <!--              <div id="topHosts"></div>-->
-              <TopHosts/>
+              <AlertIP/>
             </div>
           </div>
 
@@ -67,13 +67,13 @@
 import NetworkSegmentTerminalTotal from "../viewCharts/networkTraffic/NetworkSegmentTerminalTotal";
 import ActiveTerminal from "@/viewCharts/terminalStatus/ActiveTerminal";
 import TerminalLocationMap from "@/viewCharts/terminalStatus/TerminalLocationMap";
-import TopHosts from "@/viewCharts/terminalStatus/TopHosts";
 import terminalCommunication from "@/viewCharts/terminalStatus/terminalCommunication";
 import FlowTimingRecived from "@/viewCharts/terminalStatus/FlowTimingRecived";
 import FlowTimingSent from "@/viewCharts/terminalStatus/FlowTimingSent";
+import AlertIP from "../viewCharts/terminalStatus/AlertIP";
 export default {
   name: "TerminalStatus",
-  components: {NetworkSegmentTerminalTotal,FlowTimingSent, FlowTimingRecived, TopHosts, TerminalLocationMap, ActiveTerminal,terminalCommunication},
+  components: {NetworkSegmentTerminalTotal,FlowTimingSent, FlowTimingRecived, AlertIP, TerminalLocationMap, ActiveTerminal,terminalCommunication},
   data() {
     return {
       value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],

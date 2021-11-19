@@ -8,8 +8,8 @@
 
 
 <!--<script type="text/javascript" src="./rem.js"></script>-->
-<script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="./echarts.min.js"></script>
+<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../plugins/echarts.min.js"></script>
 <script type="text/javascript" src="./china.js"></script>
 
 <!--<script type="text/javascript" src="./testmap.js"></script>-->
@@ -21,8 +21,10 @@ $('document').ready(function () {
 
 <script>
 import '@/assets/js/flow/china.js';
-import "@/viewCharts/flow/jquery-3.3.1.min";
-import "@/viewCharts/flow/echarts.min";
+// import "@/viewCharts/flow/jquery-3.3.1.min";
+// import "@/viewCharts/flow/echarts.min";
+import "@/plugins/jquery-3.3.1.min";
+import "@/plugins/echarts.min";
 
 export default {
   name: "DynamicChinaMap",
