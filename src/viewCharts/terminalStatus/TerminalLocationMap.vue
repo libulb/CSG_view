@@ -20,14 +20,14 @@ export default {
   },
   methods:{
     drawTerminalLocationMap() {
-      this.getRequest("terminalStatus/getlocation").then(resp=>{
+      this.getRequest("terminalStatus/getlocation/" + this.GLOBAL.NETSEG).then(resp => {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.outname=resp.data.data.locations;
-          this.outvalue=resp.data.data.count;
+          this.outname = resp.data.data.locations;
+          this.outvalue = resp.data.data.count;
 
-          var outdata=[];
+          var outdata = [];
 
 
           var max = 6000,
@@ -46,14 +46,14 @@ export default {
           /*获取地图数据*/
           var mapFeatures = this.$echarts.getMap('china').geoJson.features;
 //  console.log(mapFeatures)
-          mapFeatures.forEach(function(v) {
+          mapFeatures.forEach(function (v) {
             // 地区名称
             var name = v.properties.name;
             // 地区经纬度
             geoCoordMap[name] = v.properties.cp;
 
           });
-          var convertData = function(outdata) {
+          var convertData = function (outdata) {
             var res = [];
             for (var i = 0; i < outdata.length; i++) {
               var geoCoord = geoCoordMap[outdata[i].name];
@@ -81,11 +81,11 @@ export default {
             },
             tooltip: {
               show: true,
-              formatter: function(params) {
+              formatter: function (params) {
                 if (params.value.length > 1) {
                   return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;' + params.value[2];
                 } else {
-                  return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;' + params.value ;
+                  return '&nbsp;&nbsp;' + params.name + '&nbsp;&nbsp;&nbsp;' + params.value;
                 }
               },
 
@@ -191,7 +191,7 @@ export default {
                 color: '#fff',
                 fontWeight: 'bold',
                 position: 'inside',
-                formatter: function(para) {
+                formatter: function (para) {
                   return '{cnNum|' + para.data.value[2] + '}'
                 },
                 rich: {
@@ -202,7 +202,7 @@ export default {
                 }
               },
               symbol: 'circle',
-              symbolSize: function(val) {
+              symbolSize: function (val) {
                 if (val[2] === 0) {
                   return 0;
                 }
@@ -220,7 +220,7 @@ export default {
           this.terminalLocationMapChart.setOption(mapChartOption);
 
         }
-      })
+      });
 
 
 

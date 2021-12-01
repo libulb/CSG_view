@@ -88,15 +88,15 @@ export default {
   methods:{
     drawActiveTerminal() {
 
-      this.getRequest("terminalStatus/getOnlineTerminal").then(resp=>{
+      this.getRequest("terminalStatus/getOnlineTerminal/" + this.GLOBAL.NETSEG).then(resp => {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.activeTerminalOption.xAxis.data=resp.data.data.timeStamp;
-          this.activeTerminalOption.series[0].data=resp.data.data.onlineNum;
+          this.activeTerminalOption.xAxis.data = resp.data.data.timeStamp;
+          this.activeTerminalOption.series[0].data = resp.data.data.onlineNum;
           this.activeTerminalChart.setOption(this.activeTerminalOption);
         }
-      })
+      });
       }
     }
 }

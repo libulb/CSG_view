@@ -43,12 +43,11 @@ export default {
   },
   methods:{
     drawterminalCommunication() {
-      this.getRequest("/terminalStatus/getSingelNetSeg").then(resp=>{
+      this.getRequest("/terminalStatus/getSingelNetSeg/"+this.GLOBAL.NETSEG).then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
           this.tableValue=resp.data.data;
-          console.log(resp.data.data)
         }
       })
     }

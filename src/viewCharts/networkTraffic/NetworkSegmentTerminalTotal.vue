@@ -37,6 +37,7 @@
       </div>
       <div class="Num">
         <h1>{{ dataList.alertFlow  }}</h1>
+<!--        <h1>{{ temp  }}</h1>-->
       </div>
       <div class="Num">
         <h1>{{ dataList.upbytes }}</h1>
@@ -63,7 +64,7 @@ export default {
   data() {
     return{
       dataList:[],
-
+      temp: '',
       // upload:'',
       // download:'',
       // warnFlow:'',
@@ -78,18 +79,19 @@ export default {
   mounted() {
     this.drawNetworkSegmentTerminalTotal();
     setInterval(this.drawNetworkSegmentTerminalTotal,60000);
+    this.temp = this.GLOBAL.NETSEG
   },
   methods:{
     drawNetworkSegmentTerminalTotal(){
-      this.getRequest("/terminalStatus/getNetworkSegmentTerminalTotal").then(resp=>{
+      this.getRequest("/terminalStatus/getNetworkSegmentTerminalTotal/" + this.GLOBAL.NETSEG).then(resp => {
         if (resp.status != 200) {
+
           this.$message.error("数据获取失败");
         } else {
-          console.log(resp);
-          this.dataList=resp.data.data[0];
+          this.dataList = resp.data.data[0];
 
         }
-      })
+      });
     }
   }
 }

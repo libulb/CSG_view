@@ -1,6 +1,6 @@
 import axios from "axios";
 //设置访问根路径
-// axios.defaults.baseURL = "http://localhost:8008"
+axios.defaults.baseURL = "http://localhost:8088"
 let base = ''
 
 export const getRequest = (url, params) => {

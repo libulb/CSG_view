@@ -68,5 +68,4 @@ export default {
   background-color: #10121A;
   height: 80%;
 }
-
 </style>

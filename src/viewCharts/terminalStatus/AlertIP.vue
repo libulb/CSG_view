@@ -35,12 +35,11 @@ export default {
   methods:{
     drawTopHosts() {
 
-      this.getRequest("terminalStatus/alertIP").then(resp=>{
+      this.getRequest("terminalStatus/getAlertFlow").then(resp=>{
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          console.log(resp);
-        this.list1=resp.data.data;
+          this.list1=resp.data.data;
         }
       })
     }

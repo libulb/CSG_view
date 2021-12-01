@@ -85,16 +85,15 @@ export default {
   },
   methods:{
     drawFlowTimingSent() {
-      this.getRequest("terminalStatus/getOnlineTerminal").then(resp=>{
+      this.getRequest("terminalStatus/getOnlineTerminal/" + this.GLOBAL.NETSEG).then(resp => {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          console.log(resp.data.data)
-          this.flowTimingSentChartOption.xAxis.data=resp.data.data.timeStamp;
-          this.flowTimingSentChartOption.series[0].data=resp.data.data.uprate;
+          this.flowTimingSentChartOption.xAxis.data = resp.data.data.timeStamp;
+          this.flowTimingSentChartOption.series[0].data = resp.data.data.uprate;
           this.flowTimingSentChart.setOption(this.flowTimingSentChartOption);
         }
-      })
+      });
 
     }
   }

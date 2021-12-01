@@ -19,7 +19,6 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
-    redirect: "/terminalStatus",
     children: [
       {
         path: "/flow",

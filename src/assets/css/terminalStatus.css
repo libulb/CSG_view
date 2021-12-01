@@ -41,6 +41,29 @@
     line-height: 0.42rem;
     margin-left: 1.4rem;
 }
+
+.title-box .el-cascader {
+    right: -10px;
+    line-height:20px;
+
+}
+.title-box .el-cascader .el-input {
+    width:140px;
+
+}
+
+.title-box .el-cascader .el-input .el-input__inner{
+    background-color:rgb(9, 34, 54) ;
+    border-color:rgb(9,34,54);
+    color:white;
+}
+
+.el-cascader-panel {
+    max-height: 100px;
+    background: rgb(9,34,54);
+}
+
+
 .left-top {
     width: 95%;
     height: 95%;
@@ -294,15 +317,15 @@
     float: left;
 }
 #startTime {
-float: left;
-width: 32%;
+    float: left;
+    width: 32%;
 }
 #endTime {
-float: left;
-width: 32%;
+    float: left;
+    width: 32%;
 }
 .center-bottom>.timeInterval input {
-background: #10121A ;
+    background: #10121A ;
 }
 /*改变input输入框placeholder颜色*/
 input::-webkit-input-placeholder,

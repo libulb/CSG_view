@@ -1,15 +1,21 @@
 <template>
   <div class="terminalStatus_css">
 <!--    terminalStatus页面-->
-
     <div class="container-flex" tabindex="0" hidefocus="true">
       <div class="box-left">
         <div class="title-box">
           <h6>网段终端总体统计</h6>
+          <!--          <select class='terminalFlow' v-model="selectNetSeg" @change="toSelectNetSeg">-->
+          <!--            <option :value="netSeg.id" v-for="netSeg in netSegList">{{ netSeg.name }}</option>-->
+          <!--          </select>-->
+          <el-cascader v-model="selectNetSeg"
+                       :options="netSegList"
+                       @change="toSelectNetSeg"
+                       placeholder="选择网段">
+          </el-cascader>
         </div>
         <div class="left-top">
-          <NetworkSegmentTerminalTotal/>
-
+          <NetworkSegmentTerminalTotal v-if="isRouterAlive"/>
         </div>
       </div>
       <div class="box-center">
@@ -17,34 +23,32 @@
           <div class="center-left">
             <div class="center-left-active">
 <!--              <div id="left-active"></div>-->
-              <ActiveTerminal/>
+              <ActiveTerminal v-if="isRouterAlive"/>
             </div>
           </div>
           <div class="center-center">
-            <TerminalLocationMap/>
+            <TerminalLocationMap v-if="isRouterAlive"/>
           </div>
           <div class="center-right">
-
             <div class="center-right-hosts">
 <!--              <div id="topHosts"></div>-->
-              <AlertIP/>
+              <AlertIP v-if="isRouterAlive"/>
             </div>
           </div>
-
         </div>
         <div class="center-mid">
           <div class="title-box">
             <h6>终端通信情况表</h6>
           </div>
           <div class="center-active">
-            <terminalCommunication/>
+            <terminalCommunication v-if="isRouterAlive"/>
           </div>
         </div>
         <div class="center-bottom">
           <div class="title-box">
             <h6>终端流量时序图</h6>
-            <select class='terminalFlow' >
-              <option value="1">终端1</option>
+            <select class='terminalFlow'>
+              <option value="1" disabled selected>终端1</option>
               <option value="2">终端2</option>
               <option value="3">终端3</option>
               <option value="4">终端4</option>
@@ -53,12 +57,10 @@
               <option value="7">终端7</option>
             </select>
           </div>
-          <FlowTimingRecived/>
-          <FlowTimingSent/>
+          <FlowTimingRecived v-if="isRouterAlive"/>
+          <FlowTimingSent v-if="isRouterAlive"/>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
@@ -77,11 +79,57 @@ export default {
   data() {
     return {
       value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
+      selectNetSeg:'',
+      isRouterAlive: true,
+      netSegList:[
+        {
+          value:"innerNet",
+          label:"内网",
+          children:[
+            {
+              value: '10.x.x.x',
+              label: '10.x.x.x',
+            }
+          ]
+        },
+        {
+          value:"outNet",
+          label: '外网',
+          children: [
+            {
+              value: '外网IPx.x.x.x',
+              label: '外网IPx.x.x.x',
+            }
+          ],
+        }
+        ],
     }
+  },
+  mounted() {
+    this.GLOBAL.NETSEG = '10.x.x.x';
+  },
+  methods:{
+    toSelectNetSeg() {
+      this.GLOBAL.NETSEG = this.selectNetSeg[1];
+      this.reloadPage();
+    },
+    reloadPage() {
+      this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      });
+    },
+    // getNetSegList() {
+    //   this.netSegList = '';
+    //   this.getRequest("/terminalStatus/getNetSegs").then(resp=>{
+    //     console.log(resp.data.data);
+    //   })
+    // }
   }
 }
 </script>
 
-<style scoped src="../assets/css/terminalStatus.css">
+<style scoped>
 @import "../assets/css/terminalStatus.css";
+
 </style>

@@ -1,5 +1,13 @@
 var path = require('path');
-const JSON5 = require('json5')
+// let proxyObj = {};
+// proxyObj['/'] = {
+//     ws: false,
+//     target: 'http://localhost:8088',
+//     changeOrigin: true,
+//     pathRewrite: {
+//         '^/': ''
+//     }
+// }
 
 const mockServer = (req, res) => {
     const jsonPath = req.path;
@@ -22,11 +30,12 @@ const mockServer = (req, res) => {
 
 
 module.exports = {
-
+    publicPath: '/',
     devServer: {
-        public: 'localhost:8080',
+        host: 'localhost',
+        port: '8080',
         hot: true,
-        disableHostCheck: true,
+        // proxy:proxyObj,
         before:
             process.env.VUE_APP_MOCK === 'true'
             && function (app){
