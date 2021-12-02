@@ -1,20 +1,28 @@
 <template>
   <div id="alertIP" style="width:100%;height:100%;">
     <div class="h1">告警IP</div>
-<!--    <h1></h1>-->
-    <table>
-      <tr>
-        <th>出现时间</th>
-        <th>IP</th>
-        <th>流数</th>
-      </tr>
-      <tr v-for="(item,index) in  list1">
-        <td>{{item[0]}}</td>
-        <td>{{item[1]}}</td>
-        <td>{{item[2]}}</td>
-      </tr>
 
-    </table>
+    <el-table
+
+        :data="tableData"
+        height="270"
+        style="width: 100%">
+      <el-table-column
+          prop="date"
+          label="出现时间"
+          width="80">
+      </el-table-column>
+      <el-table-column
+          prop="ip"
+          label="IP"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="flowAcount"
+          label="流数"
+          width="80">
+      </el-table-column>
+    </el-table>
 
   </div>
 
@@ -25,21 +33,23 @@ export default {
   name: "AlertIP",
   data() {
     return {
-      list1:[ ],
+      list1: [],
+      tableData: [],
 
     };
   },
   mounted() {
     this.drawTopHosts();
   },
-  methods:{
+  methods: {
     drawTopHosts() {
-
-      this.getRequest("terminalStatus/getAlertFlow").then(resp=>{
+      this.getRequest("terminalStatus/alertIP").then(resp => {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          this.list1=resp.data.data;
+          console.log(resp);
+          this.tableData = resp.data.data;
+
         }
       })
     }
@@ -47,9 +57,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
-.h1{
+.h1 {
   font-size: 20px;
   font-weight: bolder;
   color: #F5F5F5;
@@ -57,24 +67,33 @@ export default {
   margin: 0 auto;
   text-align: center;
 }
-table,th {
-  border: 1px solid black;
-  text-align: center;
-  color: #fff;
-}
-table, td{
-  border: 1px solid black;
-  text-align: center;
-  color : gold;
-  /*color:hsl(50, 50%, 50%)*/
+
+#alertIP .el-table {
+  color: gold;
 }
 
+.el-table .el-table__header-wrapper .el-table__header .has-gutter tr th {
+  background-color: #10121A;
+  border: 0;
+}
 
-table {
-  width: 100%;
-  bottom: 2%;
-  /*background-color: hsl(160,15%,50%);*/
-  background-color:  #10121A;
-  border-collapse: collapse;
+.el-table .el-table__body-wrapper .el-table__body .el-table__row {
+  background-color: #10121A;
+
+}
+
+.el-table th.is_leaf{
+  border: none;
+  cursor: pointer;
+}
+
+.el-table .el-table__body-wrapper .el-table__body .el-table__row td{
+  /* 去除表格线 */
+  border: none;
+}
+
+#alertIP .el-table::before{
+  /* 去除下边框 */
+  height: 0;
 }
 </style>
