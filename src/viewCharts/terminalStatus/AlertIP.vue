@@ -3,23 +3,25 @@
     <div class="h1">告警IP</div>
 
     <el-table
-
         :data="tableData"
         height="270"
         style="width: 100%">
       <el-table-column
-          prop="date"
+          prop="timestamp"
           label="出现时间"
+          align="center"
           width="80">
       </el-table-column>
       <el-table-column
-          prop="ip"
-          label="IP"
+          prop="netWorkSeg"
+          label="网段"
+          align="center"
       >
       </el-table-column>
       <el-table-column
-          prop="flowAcount"
-          label="流数"
+          prop="alertFlow"
+          label="告警流"
+          align="center"
           width="80">
       </el-table-column>
     </el-table>
@@ -34,7 +36,7 @@ export default {
   data() {
     return {
       list1: [],
-      tableData: [],
+      tableData:[],
 
     };
   },
@@ -70,6 +72,7 @@ export default {
 
 #alertIP .el-table {
   color: gold;
+  background-color: #10121A;
 }
 
 .el-table .el-table__header-wrapper .el-table__header .has-gutter tr th {
@@ -79,8 +82,8 @@ export default {
 
 .el-table .el-table__body-wrapper .el-table__body .el-table__row {
   background-color: #10121A;
-
 }
+
 
 .el-table th.is_leaf{
   border: none;
