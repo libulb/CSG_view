@@ -81,7 +81,7 @@ export default {
   mounted() {
     this.flowTimingSentChart = this.$echarts.init(document.getElementById('center-flowTiming-sent'));
     this.drawFlowTimingSent();
-    setInterval(this.drawFlowTimingSent,60000);
+    setInterval(this.drawFlowTimingSent,5000);
   },
   methods:{
     drawFlowTimingSent() {

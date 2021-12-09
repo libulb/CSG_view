@@ -78,7 +78,7 @@ export default {
   },
   mounted() {
     this.drawNetworkSegmentTerminalTotal();
-    setInterval(this.drawNetworkSegmentTerminalTotal,60000);
+    setInterval(this.drawNetworkSegmentTerminalTotal,5000);
     this.temp = this.GLOBAL.NETSEG
   },
   methods:{

@@ -10,7 +10,7 @@
           prop="timestamp"
           label="出现时间"
           align="center"
-          width="80">
+          width="100">
       </el-table-column>
       <el-table-column
           prop="netWorkSeg"
@@ -42,16 +42,15 @@ export default {
   },
   mounted() {
     this.drawTopHosts();
+    setInterval(this.drawTopHosts,5000);
   },
   methods: {
     drawTopHosts() {
-      this.getRequest("terminalStatus/alertIP").then(resp => {
+      this.getRequest("terminalStatus/getAlertFlow").then(resp => {
         if (resp.status != 200) {
           this.$message.error("数据获取失败");
         } else {
-          console.log(resp);
           this.tableData = resp.data.data;
-
         }
       })
     }

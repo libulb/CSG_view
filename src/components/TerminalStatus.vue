@@ -48,13 +48,13 @@
           <div class="title-box">
             <h6>终端流量时序图</h6>
             <select class='terminalFlow'>
-              <option value="1" disabled selected>终端1</option>
-              <option value="2">终端2</option>
-              <option value="3">终端3</option>
-              <option value="4">终端4</option>
-              <option value="5">终端5</option>
-              <option value="6">终端6</option>
-              <option value="7">终端7</option>
+              <option :value="ip" v-for="ip in ipList">{{ ip }}</option>
+<!--              <option value="2">终端2</option>-->
+<!--              <option value="3">终端3</option>-->
+<!--              <option value="4">终端4</option>-->
+<!--              <option value="5">终端5</option>-->
+<!--              <option value="6">终端6</option>-->
+<!--              <option value="7">终端7</option>-->
             </select>
           </div>
           <FlowTimingRecived v-if="isRouterAlive"/>
@@ -81,6 +81,7 @@ export default {
       value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
       selectNetSeg:'',
       isRouterAlive: true,
+      ipList: [],
       netSegList:[
         {
           value:"innerNet",
@@ -107,6 +108,14 @@ export default {
   },
   mounted() {
     this.GLOBAL.NETSEG = '10.x.x.x';
+    // this.getIpList();
+  },
+  watch: {
+    selectNetSeg:{
+      handler(newName) {
+        this.getIpList(newName[1])
+      }
+    }
   },
   methods:{
     toSelectNetSeg() {
@@ -119,6 +128,11 @@ export default {
         this.isRouterAlive = true;
       });
     },
+    getIpList(netseg) {
+      this.getRequest("/terminalStatus/getIpList/" + netseg).then(resp => {
+        this.ipList = resp.data.data;
+      });
+    }
     // getNetSegList() {
     //   this.netSegList = '';
     //   this.getRequest("/terminalStatus/getNetSegs").then(resp=>{
