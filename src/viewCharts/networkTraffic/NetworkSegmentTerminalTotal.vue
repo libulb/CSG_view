@@ -28,31 +28,31 @@
     </div>
     <div class="left-num">
       <div class="Num">
-        <h1>{{ (dataList.uprate / 1024).toFixed(2) }}</h1>
+        <h1>60</h1>
         <h1>kbps</h1>
       </div>
       <div class="Num">
-        <h1>{{ (dataList.downrate / 1024).toFixed(2) }}</h1>
+        <h1>80</h1>
         <h1>kbps</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList.alertFlow  }}</h1>
+        <h1>36</h1>
 <!--        <h1>{{ temp  }}</h1>-->
       </div>
       <div class="Num">
-        <h1>{{ dataList.upbytes }}</h1>
+        <h1>45</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList.downbytes  }}</h1>
+        <h1>25</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList.ondevicecount  }}</h1>
+        <h1>46</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList.offdevicecount  }}</h1>
+        <h1>39</h1>
       </div>
       <div class="Num">
-        <h1>{{ dataList.activeFlowCount  }}</h1>
+        <h1>112</h1>
       </div>
     </div>
   </div>
@@ -77,22 +77,22 @@ export default {
     }
   },
   mounted() {
-    this.drawNetworkSegmentTerminalTotal();
-    setInterval(this.drawNetworkSegmentTerminalTotal,60000);
-    this.temp = this.GLOBAL.NETSEG
+    // this.drawNetworkSegmentTerminalTotal();
+    // setInterval(this.drawNetworkSegmentTerminalTotal,60000);
+    // this.temp = this.GLOBAL.NETSEG
   },
   methods:{
-    drawNetworkSegmentTerminalTotal(){
-      this.getRequest("/terminalStatus/getNetworkSegmentTerminalTotal/" + this.GLOBAL.NETSEG).then(resp => {
-        if (resp.status != 200) {
-
-          this.$message.error("数据获取失败");
-        } else {
-          this.dataList = resp.data.data[0];
-
-        }
-      });
-    }
+    // drawNetworkSegmentTerminalTotal(){
+    //   this.getRequest("/terminalStatus/getNetworkSegmentTerminalTotal/" + this.GLOBAL.NETSEG).then(resp => {
+    //     if (resp.status != 200) {
+    //
+    //       this.$message.error("数据获取失败");
+    //     } else {
+    //       this.dataList = resp.data.data[0];
+    //
+    //     }
+    //   });
+    // }
   }
 }
 </script>

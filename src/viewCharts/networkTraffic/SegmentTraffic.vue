@@ -41,7 +41,7 @@ export default {
           {
             type: 'category',
             boundaryGap: false,
-            data: [],
+            data:  ["21:00", "21:10", "21:20", "21:30", "21:40", "21:50", "22:00"],
             axisLine: {
               lineStyle: {
                 type: 'solid',
@@ -87,7 +87,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data:[]
+            data:[140, 232, 101, 264, 90, 340, 250]
           },
         ]
       }
@@ -97,20 +97,21 @@ export default {
   },
   mounted() {
     this.SegmentTrafficChart=this.$echarts.init(document.getElementById('center-flowTiming-detail'));
-    this.drawSegmentTraffic();
+    // this.drawSegmentTraffic();
+    this.SegmentTrafficChart.setOption(this.SegmentTrafficOption);
   },
   methods:{
-    drawSegmentTraffic() {
-      this.getRequest("/networkTraffic/segmentTraffic").then(resp=>{
-        if (resp.status != 200) {
-          this.$message.error("数据获取失败");
-        } else {
-          this.SegmentTrafficOption.xAxis.data=resp.data.data[0];
-          this.SegmentTrafficOption.series[0].data=resp.data.data[1];
-          this.SegmentTrafficChart.setOption(this.SegmentTrafficOption);
-        }
-      })
-    }
+    // drawSegmentTraffic() {
+    //   this.getRequest("/networkTraffic/segmentTraffic").then(resp=>{
+    //     if (resp.status != 200) {
+    //       this.$message.error("数据获取失败");
+    //     } else {
+    //       this.SegmentTrafficOption.xAxis.data=resp.data.data[0];
+    //       this.SegmentTrafficOption.series[0].data=resp.data.data[1];
+    //       this.SegmentTrafficChart.setOption(this.SegmentTrafficOption);
+    //     }
+    //   })
+    // }
   }
 
 }
