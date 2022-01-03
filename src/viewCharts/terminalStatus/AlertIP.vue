@@ -47,11 +47,7 @@ export default {
   methods: {
     drawTopHosts() {
       this.getRequest("terminalStatus/getAlertFlow").then(resp => {
-        if (resp.status != 200) {
-          this.$message.error("数据获取失败");
-        } else {
           this.tableData = resp.data.data;
-        }
       })
     }
   }

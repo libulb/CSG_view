@@ -21,9 +21,6 @@ export default {
   methods:{
     drawTerminalLocationMap() {
       this.getRequest("terminalStatus/getlocation/" + this.GLOBAL.NETSEG).then(resp => {
-        if (resp.status != 200) {
-          this.$message.error("数据获取失败");
-        } else {
           this.outname = resp.data.data.locations;
           this.outvalue = resp.data.data.count;
 
@@ -219,7 +216,6 @@ export default {
           // 使用刚指定的配置项和数据显示图表。
           this.terminalLocationMapChart.setOption(mapChartOption);
 
-        }
       });
 
 

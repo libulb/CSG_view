@@ -4,7 +4,7 @@
     <div class="container-flex" tabindex="0" hidefocus="true">
       <div class="box-left">
         <div class="title-box">
-          <h6>网段终端总体统计</h6>
+          <h6>终端总体统计</h6>
           <!--          <select class='terminalFlow' v-model="selectNetSeg" @change="toSelectNetSeg">-->
           <!--            <option :value="netSeg.id" v-for="netSeg in netSegList">{{ netSeg.name }}</option>-->
           <!--          </select>-->
