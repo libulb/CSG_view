@@ -83,7 +83,7 @@ export default {
   mounted() {
     this.activeTerminalChart = this.$echarts.init(document.getElementById('left-active'));
     this.drawActiveTerminal();
-    setInterval(this.drawActiveTerminal,60000);
+    setInterval(this.drawActiveTerminal,5000);
   },
   methods:{
     drawActiveTerminal() {

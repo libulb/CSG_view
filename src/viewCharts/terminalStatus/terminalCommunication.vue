@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     this.drawterminalCommunication();
-    setInterval(this.drawterminalCommunication,60000);
+    setInterval(this.drawterminalCommunication,5000);
   },
   methods:{
     drawterminalCommunication() {
